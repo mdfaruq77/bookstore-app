@@ -20,11 +20,11 @@ pipeline{
             steps{
                 sshagent(['2Dil1SaathTomcatInstance']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@13.233.190.161:/home/ubuntu/webapps/
+                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@172.31.45.248:/home/ubuntu/webapps/
                     
-                    ssh ubuntu@13.233.190.161 /home/ubuntu/bin/shutdown.sh
+                    ssh ubuntu@172.31.45.248 /home/ubuntu/bin/shutdown.sh
                     
-                    ssh ubuntu@13.233.190.161 /home/ubuntu/bin/startup.sh
+                    ssh ubuntu@172.31.45.248 /home/ubuntu/bin/startup.sh
                 
                 """
             }
