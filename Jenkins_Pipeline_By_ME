@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'a73fa3fa-b0e1-47ea-9e1a-0da7b1ecfb90', url: 'https://github.com/maqsood1989/bookstore-app.git'
+                git credentialsId: 'MygitCredentials', url: 'https://github.com/mdfaruq77/MyGit.git'
             }
         }
         stage("Maven Build"){
@@ -18,13 +18,13 @@ pipeline{
         }
         stage("deploy-dev"){
             steps{
-                sshagent(['2Dil1SaathTomcatInstance']) {
+                sshagent(['MyDeployment']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@172.31.45.248:/home/ubuntu/webapps/
+                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@172.31.4.174:/opt/tomcat/webapps/
                     
-                    ssh ubuntu@172.31.45.248 /home/ubuntu/bin/shutdown.sh
+                    ssh ubuntu@172.31.4.174 /opt/tomcat/bin/shutdown.sh
                     
-                    ssh ubuntu@172.31.45.248 /home/ubuntu/bin/startup.sh
+                    ssh ubuntu@172.31.4.174 /opt/tomcat/bin/startup.sh
                 
                 """
             }
