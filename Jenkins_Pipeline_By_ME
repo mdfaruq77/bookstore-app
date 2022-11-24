@@ -20,11 +20,11 @@ pipeline{
             steps{
                 sshagent(['MyDeployment']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@172.31.4.174:/opt/tomcat/webapps/
+                    scp -o StrictHostKeyChecking=no target/meapun.war  ubuntu@172.31.8.99:/opt/tomcat/webapps/
                     
-                    ssh ubuntu@172.31.4.174 /opt/tomcat/bin/shutdown.sh
+                    ssh ubuntu@172.31.8.99 /opt/tomcat/bin/shutdown.sh
                     
-                    ssh ubuntu@172.31.4.174 /opt/tomcat/bin/startup.sh
+                    ssh ubuntu@172.31.8.99 /opt/tomcat/bin/startup.sh
                 
                 """
             }
